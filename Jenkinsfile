@@ -13,18 +13,6 @@ pipeline {
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
     stages {
-        stage("Build Application"){
-            steps {
-                sh "mvn clean package"
-            }
-
-        }
-
-        stage("Test Application"){
-            steps {
-                sh "mvn test"
-            }
-        }
         stage('check out') {
             steps {
                 git branch: 'main', changelog: false, poll: false, url: 'https://github.com/phattran0505/first-pipeline.git'
