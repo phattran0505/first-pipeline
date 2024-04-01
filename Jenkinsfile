@@ -5,7 +5,7 @@ pipeline {
       maven 'Maven3'
     }
     environment {
-	      APP_NAME = "first-pipeline"
+	    APP_NAME = "first-pipeline"
         RELEASE = "1.0.0"
         DOCKER_USER = "phattran0123"
         DOCKER_PASS = 'dockerhub'   // credentials: dockerhub-token
@@ -13,7 +13,7 @@ pipeline {
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
     stages {
-      stage("Build Application"){
+        stage("Build Application"){
             steps {
                 sh "mvn clean package"
             }
@@ -22,7 +22,7 @@ pipeline {
 
         stage("Test Application"){
             steps {
-                    sh "mvn test"
+                sh "mvn test"
             }
         }
         stage('check out') {
@@ -30,16 +30,15 @@ pipeline {
                 git branch: 'main', changelog: false, poll: false, url: 'https://github.com/phattran0505/first-pipeline.git'
             }
         }
-      stage("Build Application"){
+        stage("Build Application"){
             steps {
                 sh "mvn clean package"
             }
-
         }
 
         stage("Test Application"){
             steps {
-                    sh "mvn test"
+                sh "mvn test"
             }
         }
         stage("Build & Push Docker Image") {
